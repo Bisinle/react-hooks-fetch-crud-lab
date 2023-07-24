@@ -9,17 +9,31 @@ function QuestionForm(props) {
     answer4: "",
     correctIndex: 0,
   });
+  const [answers, setAnswers] = useState([]);
 
-  function handleChange(event) {
+  function handleChange(e) {
+    // console.log(event.target.value);
+    const { name, value } = e.target;
+
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     });
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(formData);
+  function handleSubmit(e) {
+    e.preventDefault();
+    // console.log(formData);
+    props.handleSubmit(formData);
+
+    setFormData({
+      prompt: "",
+      answer1: "",
+      answer2: "",
+      answer3: "",
+      answer4: "",
+      correctIndex: 0,
+    });
   }
 
   return (
